@@ -12,21 +12,19 @@ class App extends React.Component {
     }
 
     computeAvailability() {
-        console.log(this.state.dateString);
-        const knownDate = new Date('2020-01-16');
-        console.log(knownDate);
-        const inputDate = new Date(this.state.dateString);
-        console.log(inputDate);
-        const milisecondDifference = inputDate.getTime() - knownDate.getTime();
-        console.log(milisecondDifference);
-        const dayDifference = milisecondDifference / (1000 * 60 * 60 * 24);
-        console.log(dayDifference);
-        const isWorking = dayDifference % 3 === 0;
-        console.log(isWorking);
-        this.setState({
-           showResult: true,
-           isWorking: isWorking
-        });
+        try {
+            const knownDate = new Date('2020-01-16');
+            const inputDate = new Date(this.state.dateString);
+            const milisecondDifference = inputDate.getTime() - knownDate.getTime();
+            const dayDifference = milisecondDifference / (1000 * 60 * 60 * 24);
+            const isWorking = dayDifference % 3 === 0;
+            this.setState({
+                showResult: true,
+                isWorking: isWorking
+            });
+        } catch {
+            alert('Unable to check date. Please try again.');
+        }
     }
 
     upDate(e) {
